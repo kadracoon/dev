@@ -2,3 +2,4 @@
 pgdata/
 mongodata/
 redisdata/
+*.code-workspace
