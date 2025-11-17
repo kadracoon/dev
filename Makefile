@@ -41,12 +41,6 @@ revision:
 shell:
 	docker compose -f docker-compose.dev.yml exec backend bash
 
-psql:
-	docker exec -it $$(docker ps -qf name=postgres) psql -U user -d kadracoon
-
-mongo:
-	docker exec -it $$(docker ps -qf name=mongo) mongosh
-
 reset-db:
 	docker compose -f docker-compose.dev.yml down -v && docker compose -f docker-compose.dev.yml up -d --build
 
