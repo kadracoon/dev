@@ -1,4 +1,12 @@
-SHELL := /usr/bin/bash
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin) # macos
+    SHELL := /bin/bash
+endif
+
+ifeq ($(UNAME_S),Linux) # linux
+    SHELL := /usr/bin/bash
+endif
 
 up:
 	docker compose -f docker-compose.dev.yml up -d --build
