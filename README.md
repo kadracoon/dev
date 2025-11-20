@@ -43,14 +43,20 @@ cd frontend
 bun i
 ```
 
-6. Скачать 1000 фильмов
+6. Синхронизировать в базу `tmdb-sync` 1000 фильмов
 1000
 ```sh
-http://0.0.0.0:8001/docs#/default/sync_by_top_votes_sync_top_votes_post
+curl -X 'POST' \
+  'http://127.0.0.1:8001/sync/top-votes?limit=1000&resume=true' \
+  -H 'accept: application/json' \
+  -d ''
 ```
 
+Можно проверять ход выполнения время от времени:
 ```sh
-http://0.0.0.0:8001/docs#/default/get_sync_status_sync_status_get
+curl -X 'GET' \
+  'http://127.0.0.1:8001/sync/status' \
+  -H 'accept: application/json'
 ```
 
 7. Создать коллекцию
@@ -91,7 +97,7 @@ curl -X 'POST' \
 }
 ```
 
-8 Скомпиллировать коллекцию
+8. Скомпиллировать коллекцию
 ```sh
 curl -X 'POST' \
   'http://0.0.0.0:8000/collections/1/compile' \
@@ -111,4 +117,9 @@ curl -X 'POST' \
   "collection_id": 1,
   "version_id": 1
 }
+```
+
+9. Запустить фронтэнд:
+```sh
+bun dev
 ```
