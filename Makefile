@@ -23,12 +23,6 @@ ps:
 nuke:
 	docker compose -f docker-compose.dev.yml down -v
 
-psql:
-	docker exec -it $$(docker ps -qf name=postgres) psql -U user -d kadracoon
-
-mongo:
-	docker exec -it $$(docker ps -qf name=mongo) mongosh
-
 migrate:
 	docker compose -f docker-compose.dev.yml exec backend alembic upgrade head
 
